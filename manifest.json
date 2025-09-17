@@ -1,0 +1,15 @@
+{
+	"manifest_version": 3,
+	"name": "ADHDragon",
+	"description": "A Chrome extension for ADHD people to help them stay focused with a pretty dragon pet.",
+	"version": "1.0.0",
+	"permissions": [
+		"tabs"
+	],
+	"action": {
+		"default_popup": "popup/popup.html"
+	},
+	"icons": {
+		"128": "icon/icon128.png"
+	}
+}
