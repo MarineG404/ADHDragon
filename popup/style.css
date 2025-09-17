@@ -95,3 +95,22 @@ button:hover {
 	border-radius: 6px;
 	box-shadow: 0 1px 4px rgba(108, 99, 255, 0.07);
 }
+
+#name-container {
+	display: none;
+	margin: 10px 0;
+}
+
+#dragon-name {
+	margin: 8px 0;
+}
+
+#money-display {
+	margin-bottom: 8px;
+	font-weight: 600;
+}
+
+#message-display {
+	margin-top: 12px;
+	min-height: 24px;
+}
