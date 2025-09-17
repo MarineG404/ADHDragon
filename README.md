@@ -33,7 +33,7 @@ adhdragon/
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/utilisateur/adhdragon.git
+git clone https://github.com/MarineG404/ADHDragon
 cd adhdragon
 ```
 
@@ -49,11 +49,10 @@ cd adhdragon
 - Clique sur l’icône ADHDragon dans la barre d’extensions.
 - Gère ta monnaie virtuelle et interagis avec le dragon via la popup.
 
-## 📸 Captures d’écran (optionnel)
+## 📸 Captures d’écran
 
-> Ajoute ici des images ou GIF de la popup et du dragon.
+<img src="img/presentation.png" alt="Texte alternatif" width="45%">
 
 ## 👥 Auteur
 
 - Marine - Développement & design
-# ADHDragon
