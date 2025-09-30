@@ -8,7 +8,7 @@ ADHDragon est une extension Chrome pensée pour les personnes avec TDAH. Elle pr
 - [x] Système de monnaie virtuelle
 - [x] Boutons pour nourrir ou donner à boire au dragon (Twix, Redbull)
 - [x] Message si manque d'argents
-- [ ] Système pour gagner de la monnaie virtuelle
+- [x] Système pour gagner de la monnaie virtuelle
 
 ## 🛠️ Technologies utilisées
 - **Front-end** : HTML, CSS, JavaScript

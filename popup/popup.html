@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<script src="dragon.js" defer></script>
 </head>
 
 <body>
+	<button class="settings-btn">⚙️</button>
 
 	<div id="name-container">
-		<input id="name-input" type="text" placeholder="Nom du dragon">
+		<input id="name-input" type="text" placeholder="Nom de ton dragon">
 		<button id="name-btn">Valider</button>
 	</div>
 
 	<h2 id="dragon-name"></h2>
 
 	<img src="../icon/logo.png" alt="Dragon" class="dragon-img">
-
 
 	<div id="money-display"></div>
 
@@ -37,6 +38,30 @@
 	</div>
 
 	<div id="message-display"></div>
+
+	<div id="settings-panel" class="settings-panel">
+		<div class="settings-content">
+			<h3>🎯 Sites qui rapportent</h3>
+			<div class="settings-desc">
+				Ajoute les sites où tu bosses pour gagner de l'argent.<br>
+				<strong>Exemple :</strong> <span class="example-site">docs.google.com</span>
+			</div>
+
+			<div class="site-input-container">
+				<input type="text" id="site-input" placeholder="Ex: notion.so, github.com..." autocomplete="off">
+				<button id="add-site-btn">+ Ajouter</button>
+			</div>
+
+			<div class="error-message" id="error-message">❌ URL invalide ou déjà ajoutée</div>
+			<div class="success-message" id="success-message">✅ Site ajouté !</div>
+
+			<div class="sites-list" id="sites-list"></div>
+
+			<div class="settings-actions">
+				<button class="close-btn" id="close-settings-btn">Fermer</button>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
