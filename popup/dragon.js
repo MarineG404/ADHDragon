@@ -145,13 +145,13 @@ function showTemporaryMessage(message) {
 }
 
 // Events - Settings
-settingsBtn.onclick = () => {
-	settingsPanel.style.display = 'block';
-};
+settingsBtn.addEventListener("click", () => {
+	settingsPanel.classList.add("active");
+});
 
-closeSettingsBtn.onclick = () => {
-	settingsPanel.style.display = 'none';
-};
+closeSettingsBtn.addEventListener("click", () => {
+	settingsPanel.classList.remove("active");
+});
 
 settingsPanel.onclick = (e) => {
 	if (e.target === settingsPanel) {
