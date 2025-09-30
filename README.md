@@ -18,14 +18,15 @@ ADHDragon est une extension Chrome pensée pour les personnes avec TDAH. Elle pr
 
 ```bash
 adhdragon/
-│── icon/         # Icônes du projet
-│── img/          # Images des objets (Redbull, Twix…)
+│── icon/           # Icônes du projet
+│── img/            # Images des objets (Redbull, Twix…)
 │── popup/
 │   ├── popup.html
 │   ├── style.css
-│   └── dragon.js
-│── manifest.json # Fichier de configuration de l’extension
-│── README.md     # Documentation principale
+│   └── dragon.js   # Logique de la popup
+│── background.js   # Script de fond (gains automatiques)
+│── manifest.json   # Configuration de l’extension
+│── README.md       # Documentation principale
 ```
 
 ## ⚙️ Installation & utilisation
@@ -55,4 +56,4 @@ cd adhdragon
 
 ## 👥 Auteur
 
-- Marine - Développement & design
+- Marine GONNORD - Développement & design
