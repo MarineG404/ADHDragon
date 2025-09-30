@@ -4,7 +4,8 @@
 	"description": "A Chrome extension for ADHD people to help them stay focused with a pretty dragon pet.",
 	"version": "1.0.0",
 	"permissions": [
-		"tabs"
+		"tabs",
+		"storage"
 	],
 	"action": {
 		"default_popup": "popup/popup.html"
