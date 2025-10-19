@@ -19,6 +19,14 @@ const nameInput = document.getElementById("name-input");
 const nameBtn = document.getElementById("name-btn");
 const dragonNameDisplay = document.getElementById("dragon-name");
 
+// Get prices from background
+chrome.runtime.sendMessage({ action: "getPrices" }, (response) => {
+	if (response && response.prices) {
+		PRICES = response.prices;
+		updatePriceLabels();
+	}
+});
+
 // Load data from chrome.storage.local
 function loadData() {
 	chrome.storage.local.get(["adhdragon_sites", "adhdragon_money", "dragonName"], (data) => {
@@ -26,7 +34,6 @@ function loadData() {
 		money = data.adhdragon_money !== undefined ? parseFloat(data.adhdragon_money) : 5.00;
 		dragonName = data.dragonName || "Mon Dragon";
 
-		// Show name container if no name defined
 		if (!data.dragonName) {
 			nameContainer.style.display = "flex";
 			dragonNameDisplay.style.display = "none";
@@ -148,6 +155,19 @@ function updateUI() {
 	dragonNameDisplay.textContent = dragonName;
 }
 
+// Update price labels in HTML
+function updatePriceLabels() {
+	const redbullPrice = document.getElementById("redbull-price");
+	const twixPrice = document.getElementById("twix-price");
+
+	if (redbullPrice) {
+		redbullPrice.textContent = PRICES.redbull.toFixed(2).replace(".", ",") + " €";
+	}
+	if (twixPrice) {
+		twixPrice.textContent = PRICES.twix.toFixed(2).replace(".", ",") + " €";
+	}
+}
+
 // Show temporary message
 function showTemporaryMessage(message) {
 	messageDisplay.textContent = message;
@@ -195,8 +215,8 @@ nameInput.addEventListener("keypress", (e) => {
 
 // Events - Product buttons
 document.getElementById("redbull-btn").onclick = () => {
-	if (money >= 1.30) {
-		money -= 1.30;
+	if (money >= PRICES.redbull) {
+		money -= PRICES.redbull;
 		saveData();
 		updateUI();
 		showTemporaryMessage("🥤 Red Bull acheté !");
@@ -206,8 +226,8 @@ document.getElementById("redbull-btn").onclick = () => {
 };
 
 document.getElementById("twix-btn").onclick = () => {
-	if (money >= 2.10) {
-		money -= 2.10;
+	if (money >= PRICES.twix) {
+		money -= PRICES.twix;
 		saveData();
 		updateUI();
 		showTemporaryMessage("🍫 Twix acheté !");
