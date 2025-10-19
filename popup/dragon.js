@@ -82,13 +82,13 @@ function addSite() {
 	const cleanedDomain = cleanDomain(domain);
 
 	if (!isValidDomain(cleanedDomain)) {
-		errorMessage.textContent = "❌ Invalid URL";
+		errorMessage.textContent = "❌ URL invalide";
 		showMessage(errorMessage);
 		return;
 	}
 
 	if (sites.includes(cleanedDomain)) {
-		errorMessage.textContent = "❌ Site already added";
+		errorMessage.textContent = "❌ Site déjà ajouté";
 		showMessage(errorMessage);
 		return;
 	}
@@ -187,9 +187,9 @@ document.getElementById("redbull-btn").onclick = () => {
 		money -= 1.30;
 		saveData();
 		updateUI();
-		showTemporaryMessage("🥤 Red Bull bought!");
+		showTemporaryMessage("🥤 Red Bull acheté !");
 	} else {
-		showTemporaryMessage("❌ Not enough money!");
+		showTemporaryMessage("❌ Pas assez d'argent !");
 	}
 };
 
@@ -198,9 +198,9 @@ document.getElementById("twix-btn").onclick = () => {
 		money -= 2.10;
 		saveData();
 		updateUI();
-		showTemporaryMessage("🍫 Twix bought!");
+		showTemporaryMessage("🍫 Twix acheté !");
 	} else {
-		showTemporaryMessage("❌ Not enough money!");
+		showTemporaryMessage("❌ Pas assez d'argent !");
 	}
 };
 
