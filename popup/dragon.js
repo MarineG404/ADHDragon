@@ -1,3 +1,5 @@
+let PRICES = {};
+
 // Global variables
 let sites = [];
 let money = 0;
