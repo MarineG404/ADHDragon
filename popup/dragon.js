@@ -65,7 +65,7 @@ function isValidDomain(domain) {
 		return true;
 	}
 
-	const domainRegex = /^[a-z0-9]+([-.]{ 1 }[a-z0-9]+)*\.[a-z]{ 2,}$/;
+	const domainRegex = /^[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,}$/;
 	return domainRegex.test(cleanDomainStr) && cleanDomainStr.length > 3;
 }
 
