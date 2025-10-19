@@ -1,35 +1,35 @@
-// Variables globales
+// Global variables
 let sites = [];
 let money = 0;
 let dragonName = "Mon Dragon";
 
-// Éléments DOM
-const settingsBtn = document.querySelector('.settings-btn');
-const settingsPanel = document.getElementById('settings-panel');
-const closeSettingsBtn = document.getElementById('close-settings-btn');
-const siteInput = document.getElementById('site-input');
-const addSiteBtn = document.getElementById('add-site-btn');
-const sitesList = document.getElementById('sites-list');
-const errorMessage = document.getElementById('error-message');
-const successMessage = document.getElementById('success-message');
-const moneyDisplay = document.getElementById('money-display');
-const messageDisplay = document.getElementById('message-display');
-const nameContainer = document.getElementById('name-container');
-const nameInput = document.getElementById('name-input');
-const nameBtn = document.getElementById('name-btn');
-const dragonNameDisplay = document.getElementById('dragon-name');
+// DOM elements
+const settingsBtn = document.querySelector(".settings-btn");
+const settingsPanel = document.getElementById("settings-panel");
+const closeSettingsBtn = document.getElementById("close-settings-btn");
+const siteInput = document.getElementById("site-input");
+const addSiteBtn = document.getElementById("add-site-btn");
+const sitesList = document.getElementById("sites-list");
+const errorMessage = document.getElementById("error-message");
+const successMessage = document.getElementById("success-message");
+const moneyDisplay = document.getElementById("money-display");
+const messageDisplay = document.getElementById("message-display");
+const nameContainer = document.getElementById("name-container");
+const nameInput = document.getElementById("name-input");
+const nameBtn = document.getElementById("name-btn");
+const dragonNameDisplay = document.getElementById("dragon-name");
 
-// Charger les données depuis chrome.storage.local
+// Load data from chrome.storage.local
 function loadData() {
-	chrome.storage.local.get(['adhdragon_sites', 'adhdragon_money', 'dragonName'], (data) => {
+	chrome.storage.local.get(["adhdragon_sites", "adhdragon_money", "dragonName"], (data) => {
 		sites = data.adhdragon_sites || [];
 		money = data.adhdragon_money !== undefined ? parseFloat(data.adhdragon_money) : 5.00;
 		dragonName = data.dragonName || "Mon Dragon";
 
-		// Afficher le container de nom si pas de nom défini
+		// Show name container if no name defined
 		if (!data.dragonName) {
-			nameContainer.style.display = 'flex';
-			dragonNameDisplay.style.display = 'none';
+			nameContainer.style.display = "flex";
+			dragonNameDisplay.style.display = "none";
 		}
 
 		updateUI();
@@ -37,7 +37,7 @@ function loadData() {
 	});
 }
 
-// Sauvegarder les données dans chrome.storage.local
+// Save data to chrome.storage.local
 function saveData() {
 	chrome.storage.local.set({
 		adhdragon_sites: sites,
@@ -46,34 +46,34 @@ function saveData() {
 	});
 }
 
-// Valider une URL
+// Validate URL
 function isValidDomain(domain) {
-	const cleanDomain = domain.trim().toLowerCase()
-		.replace(/^https?:\/\//, '')
-		.replace(/^www\./, '')
-		.replace(/\/.*$/, '');
+	const cleanDomainStr = domain.trim().toLowerCase()
+		.replace(/^https?:\/\//, "")
+		.replace(/^www\./, "")
+		.replace(/\/.*$/, "");
 
-	const domainRegex = /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,}$/;
-	return domainRegex.test(cleanDomain) && cleanDomain.length > 3;
+	const domainRegex = /^[a-z0-9]+([-.]{ 1 }[a-z0-9]+)*\.[a-z]{ 2,}$/;
+	return domainRegex.test(cleanDomainStr) && cleanDomainStr.length > 3;
 }
 
-// Nettoyer le domaine
+// Clean domain
 function cleanDomain(domain) {
 	return domain.trim().toLowerCase()
-		.replace(/^https?:\/\//, '')
-		.replace(/^www\./, '')
-		.replace(/\/.*$/, '');
+		.replace(/^https?:\/\//, "")
+		.replace(/^www\./, "")
+		.replace(/\/.*$/, "");
 }
 
-// Afficher un message temporaire
+// Show temporary message
 function showMessage(element, duration = 2000) {
-	element.style.display = 'block';
+	element.style.display = "block";
 	setTimeout(() => {
-		element.style.display = 'none';
+		element.style.display = "none";
 	}, duration);
 }
 
-// Ajouter un site
+// Add site
 function addSite() {
 	const domain = siteInput.value;
 
@@ -82,13 +82,13 @@ function addSite() {
 	const cleanedDomain = cleanDomain(domain);
 
 	if (!isValidDomain(cleanedDomain)) {
-		errorMessage.textContent = '❌ URL invalide';
+		errorMessage.textContent = "❌ Invalid URL";
 		showMessage(errorMessage);
 		return;
 	}
 
 	if (sites.includes(cleanedDomain)) {
-		errorMessage.textContent = '❌ Site déjà ajouté';
+		errorMessage.textContent = "❌ Site already added";
 		showMessage(errorMessage);
 		return;
 	}
@@ -96,32 +96,32 @@ function addSite() {
 	sites.push(cleanedDomain);
 	saveData();
 	renderSites();
-	siteInput.value = '';
+	siteInput.value = "";
 
 	showMessage(successMessage);
 }
 
-// Supprimer un site
+// Remove site
 function removeSite(domain) {
 	sites = sites.filter(s => s !== domain);
 	saveData();
 	renderSites();
 }
 
-// Afficher les sites
+// Display sites
 function renderSites() {
-	sitesList.innerHTML = '';
+	sitesList.innerHTML = "";
 
 	sites.forEach(site => {
-		const tag = document.createElement('div');
-		tag.className = 'site-tag';
+		const tag = document.createElement("div");
+		tag.className = "site-tag";
 
-		const siteText = document.createElement('span');
+		const siteText = document.createElement("span");
 		siteText.textContent = site;
 
-		const removeBtn = document.createElement('button');
-		removeBtn.className = 'remove-site';
-		removeBtn.innerHTML = '×';
+		const removeBtn = document.createElement("button");
+		removeBtn.className = "remove-site";
+		removeBtn.innerHTML = "×";
 		removeBtn.onclick = () => removeSite(site);
 
 		tag.appendChild(siteText);
@@ -130,17 +130,17 @@ function renderSites() {
 	});
 }
 
-// Mettre à jour l'affichage
+// Update UI
 function updateUI() {
-	moneyDisplay.textContent = money.toFixed(2).replace('.', ',') + ' €';
+	moneyDisplay.textContent = money.toFixed(2).replace(".", ",") + " €";
 	dragonNameDisplay.textContent = dragonName;
 }
 
-// Afficher un message temporaire
+// Show temporary message
 function showTemporaryMessage(message) {
 	messageDisplay.textContent = message;
 	setTimeout(() => {
-		messageDisplay.textContent = '';
+		messageDisplay.textContent = "";
 	}, 2000);
 }
 
@@ -155,61 +155,61 @@ closeSettingsBtn.addEventListener("click", () => {
 
 settingsPanel.onclick = (e) => {
 	if (e.target === settingsPanel) {
-		settingsPanel.style.display = 'none';
+		settingsPanel.style.display = "none";
 	}
 };
 
 addSiteBtn.onclick = addSite;
 
-siteInput.addEventListener('keypress', (e) => {
-	if (e.key === 'Enter') addSite();
+siteInput.addEventListener("keypress", (e) => {
+	if (e.key === "Enter") addSite();
 });
 
-// Event - Nom du dragon
+// Event - Dragon name
 nameBtn.onclick = () => {
 	const name = nameInput.value.trim();
 	if (name) {
 		dragonName = name;
 		saveData();
-		nameContainer.style.display = 'none';
-		dragonNameDisplay.style.display = 'block';
+		nameContainer.style.display = "none";
+		dragonNameDisplay.style.display = "block";
 		dragonNameDisplay.textContent = dragonName;
 	}
 };
 
-nameInput.addEventListener('keypress', (e) => {
-	if (e.key === 'Enter') nameBtn.click();
+nameInput.addEventListener("keypress", (e) => {
+	if (e.key === "Enter") nameBtn.click();
 });
 
-// Events - Boutons produits
-document.getElementById('redbull-btn').onclick = () => {
+// Events - Product buttons
+document.getElementById("redbull-btn").onclick = () => {
 	if (money >= 1.30) {
 		money -= 1.30;
 		saveData();
 		updateUI();
-		showTemporaryMessage('🥤 Red Bull acheté !');
+		showTemporaryMessage("🥤 Red Bull bought!");
 	} else {
-		showTemporaryMessage('❌ Pas assez d\'argent !');
+		showTemporaryMessage("❌ Not enough money!");
 	}
 };
 
-document.getElementById('twix-btn').onclick = () => {
+document.getElementById("twix-btn").onclick = () => {
 	if (money >= 2.10) {
 		money -= 2.10;
 		saveData();
 		updateUI();
-		showTemporaryMessage('🍫 Twix acheté !');
+		showTemporaryMessage("🍫 Twix bought!");
 	} else {
-		showTemporaryMessage('❌ Pas assez d\'argent !');
+		showTemporaryMessage("❌ Not enough money!");
 	}
 };
 
-// Initialisation au chargement
+// Init on load
 loadData();
 
-// Écouter les changements de storage (pour sync entre onglets/popup)
+// Listen for storage changes (sync between tabs/popup)
 chrome.storage.onChanged.addListener((changes, namespace) => {
-	if (namespace === 'local') {
+	if (namespace === "local") {
 		if (changes.adhdragon_money) {
 			money = parseFloat(changes.adhdragon_money.newValue);
 			updateUI();
