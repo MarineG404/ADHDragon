@@ -53,13 +53,25 @@ function isValidDomain(domain) {
 		.replace(/^www\./, "")
 		.replace(/\/.*$/, "");
 
+	// Allow chrome:// URLs
+	if (domain.startsWith("chrome://")) {
+		return true;
+	}
+
 	const domainRegex = /^[a-z0-9]+([-.]{ 1 }[a-z0-9]+)*\.[a-z]{ 2,}$/;
 	return domainRegex.test(cleanDomainStr) && cleanDomainStr.length > 3;
 }
 
 // Clean domain
 function cleanDomain(domain) {
-	return domain.trim().toLowerCase()
+	const trimmed = domain.trim().toLowerCase();
+
+	// Keep chrome:// URLs as is
+	if (trimmed.startsWith("chrome://")) {
+		return trimmed;
+	}
+
+	return trimmed
 		.replace(/^https?:\/\//, "")
 		.replace(/^www\./, "")
 		.replace(/\/.*$/, "");

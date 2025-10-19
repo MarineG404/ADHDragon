@@ -20,7 +20,12 @@ function isWorkSite(url) {
 	if (!url) return false;
 
 	return WORK_SITES.some(site => {
-		// Remove protocol and www
+		// Handle chrome:// URLs
+		if (site.startsWith("chrome://")) {
+			return url.startsWith(site);
+		}
+
+		// Remove protocol and www for regular URLs
 		const cleanUrl = url.replace(/^https?:\/\/(www\.)?/, "");
 		const cleanSite = site.replace(/^https?:\/\/(www\.)?/, "");
 		return cleanUrl.includes(cleanSite);
