@@ -1,25 +1,27 @@
 {
 	"name": "adhdragon",
 	"version": "1.0.0",
-	"description": "## 📖 Description ADHDragon est une extension Chrome pensée pour les personnes avec TDAH. Elle propose un dragon virtuel qui t’accompagne et t’aide à rester concentré, avec des interactions ludiques (nourrir, donner à boire…).",
+	"description": "A Chrome extension for ADHD people to help them stay focused with a pretty dragon pet.",
 	"main": "background.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint .",
+		"lint:fix": "eslint --fix ."
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/MarineG404/ADHDragon.git"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"author": "Marine",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/MarineG404/ADHDragon/issues"
 	},
 	"homepage": "https://github.com/MarineG404/ADHDragon#readme",
 	"devDependencies": {
-		"@eslint/js": "^9.38.0",
-		"eslint": "^9.38.0",
-		"globals": "^16.4.0"
+		"@eslint/js": "^9.17.0",
+		"eslint": "^9.17.0",
+		"globals": "^15.14.0"
 	}
 }
