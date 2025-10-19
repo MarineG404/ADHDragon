@@ -4,8 +4,8 @@ const EARN_AMOUNT = 0.10; // € per interval
 const EARN_INTERVAL = 10; // seconds per reward
 
 const PRICES = {
-	redbull: 1.30,
-	twix: 2.00
+	redbull: 2.30,
+	twix: 1.50
 };
 
 let currentSite = null;
